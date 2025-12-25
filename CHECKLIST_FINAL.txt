@@ -1,0 +1,204 @@
+# ✅ CHECKLIST FINAL - GITHUB + DESPLIEGUE
+
+## Descarga y Preparación
+
+- [ ] Descargaste el archivo `meeting-to-presentation-app-github.zip`
+- [ ] Descomprimiste el ZIP en tu computadora
+- [ ] Abriste la carpeta en una terminal
+- [ ] Ejecutaste `ls -la` y ves: README.md, package.json, app/, components/
+
+## Crear Repositorio GitHub
+
+- [ ] Fuiste a github.com
+- [ ] Creaste un nuevo repositorio (github.com/new)
+- [ ] Lo nombraste: `meeting-to-presentation-app`
+- [ ] Lo marcaste como PUBLIC (no private)
+- [ ] **NO** marcaste "Initialize with README"
+- [ ] Lo creaste
+
+## Subir Código a GitHub
+
+**Opción A: Línea de Comandos**
+```
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/TU-USUARIO/meeting-to-presentation-app.git
+git push -u origin main
+```
+
+- [ ] Ejecutaste los comandos anteriores
+- [ ] El código está en github.com/tu-usuario/meeting-to-presentation-app
+- [ ] Puedes verlo en el navegador
+
+**Opción B: GitHub Desktop**
+- [ ] Usaste GitHub Desktop en lugar de CLI
+- [ ] El código está sincronizado
+
+## Obtener API Keys (⏱️ 5 minutos)
+
+### Anthropic API
+- [ ] Fuiste a console.anthropic.com
+- [ ] Creaste una cuenta (o logueaste)
+- [ ] Generaste una API key
+- [ ] La copiaste (empieza con `sk-ant-`)
+- [ ] La guardaste en un lugar seguro
+
+### FAL AI
+- [ ] Fuiste a fal.ai
+- [ ] Creaste una cuenta
+- [ ] Generaste una API key en Account → API Keys
+- [ ] La copiaste
+- [ ] La guardaste
+
+### Supabase
+- [ ] Fuiste a supabase.com
+- [ ] Creaste una nueva cuenta/proyecto
+- [ ] Esperaste a que se inicialize (~2 min)
+- [ ] Fuiste a Settings → API
+- [ ] Copiaste la URL del proyecto (https://...supabase.co)
+- [ ] Copiaste la anon key (empieza con eyJhbG...)
+- [ ] Guardaste ambas
+
+## Configurar Vercel (⏱️ 2 minutos)
+
+- [ ] Fuiste a vercel.com
+- [ ] Hiciste login con GitHub
+- [ ] Click "New Project"
+- [ ] Importaste tu repositorio `meeting-to-presentation-app`
+- [ ] Lo conectaste
+
+## Configurar Variables de Entorno en Vercel
+
+En la página de configuración del proyecto en Vercel, añadiste:
+
+- [ ] `NEXT_PUBLIC_ANTHROPIC_API_KEY` = tu clave Anthropic
+- [ ] `ANTHROPIC_API_KEY` = tu clave Anthropic (misma que arriba)
+- [ ] `NEXT_PUBLIC_FAL_KEY` = tu clave FAL
+- [ ] `NEXT_PUBLIC_SUPABASE_URL` = tu URL Supabase
+- [ ] `NEXT_PUBLIC_SUPABASE_ANON_KEY` = tu clave anon Supabase
+
+⚠️ **IMPORTANTE:** 
+  - Copia exactamente (sin espacios extras)
+  - Las claves empiezan/terminan donde empieza/termina la clave real
+  - Haz click en "Add Secret" después de cada una
+
+## Desplegar
+
+- [ ] Hiciste click "Deploy" en Vercel
+- [ ] Esperaste 2-3 minutos a que compile
+- [ ] Viste ✓ "Deployment successful"
+- [ ] Copiaste la URL que generó Vercel (vercel-...app)
+
+## Pruebas Post-Deploy
+
+En tu navegador, ve a tu URL de Vercel:
+
+- [ ] La página carga sin errores
+- [ ] Ves el formulario de "Meeting to Presentation"
+- [ ] Puedes completar el formulario
+- [ ] Los inputs aceptan texto
+- [ ] El botón "Generate Presentation" está presente
+
+## Documentación
+
+- [ ] Leíste README.md (en tu repositorio o en GitHub)
+- [ ] Leíste DEPLOYMENT.md para opciones avanzadas
+- [ ] Leíste QUICK_START.md si necesitas ayuda
+
+## Funcionalidad de la App (Opcional - Prueba Completa)
+
+Si quieres probar la app completa:
+
+- [ ] Ingresa un prompt del sistema (ej: "Crea slides profesionales")
+- [ ] Ingresa orientación (ej: "Empresa tech")
+- [ ] Selecciona un estilo visual
+- [ ] Pega una transcripción (o texto de ejemplo)
+- [ ] Haz click "Generate Presentation"
+- [ ] Espera a que procese (puede tomar 1-2 min)
+- [ ] Ves las diapositivas generadas
+- [ ] Ves las imágenes generadas
+- [ ] Puedes descargar el PDF
+
+## Siguiente: Tu Dominio Personalizado (Opcional)
+
+Si quieres un dominio como "presentation-app.com":
+
+- [ ] Compra un dominio en Namecheap, GoDaddy, etc.
+- [ ] En Vercel → Settings → Domains
+- [ ] Añade tu dominio
+- [ ] Sigue instrucciones para DNS
+- [ ] Espera 24 horas a que DNS propague
+
+## Actualizar tu App (Después)
+
+Cuando hagas cambios:
+
+```bash
+git add .
+git commit -m "Tu mensaje"
+git push origin main
+```
+
+- [ ] Vercel detecta automáticamente el push
+- [ ] Inicia build automático
+- [ ] Deploy automático en 2-3 minutos
+
+## Compartir tu App
+
+Tu app estará en vivo en:
+**https://tu-proyecto.vercel.app**
+
+Puedes:
+- [ ] Copiar la URL
+- [ ] Compartir en redes sociales
+- [ ] Mostrar a colegas
+- [ ] Integrar en tu portfolio
+
+---
+
+## ❓ Si Algo Falla
+
+### Error: "Build failed"
+- Verifica que todas las ENV vars están en Vercel
+- Revisa los logs en Vercel dashboard
+- Asegúrate que no hay caracteres especiales en las claves
+
+### Error: "API key not found"
+- Las claves no están en .env.local (local) o en Vercel (producción)
+- Copia exactamente (sin espacios)
+- Prueba copiar de nuevo
+
+### Error: "Cannot find module"
+```bash
+rm -rf node_modules pnpm-lock.yaml
+pnpm install
+```
+
+### PDF no descarga
+- Verifica que Supabase está configurado
+- Revisa logs de la API
+
+### Imágenes no aparecen
+- Verifica que FAL key es válida
+- Revisa que tienes créditos en FAL
+
+---
+
+## ✅ COMPLETADO!
+
+Si todo está checked ✅, ¡Tu app está lista en producción!
+
+**Tu app pública:**
+`https://tu-proyecto.vercel.app`
+
+**Tu repositorio:**
+`https://github.com/tu-usuario/meeting-to-presentation-app`
+
+¡Felicidades! 🎉
+
+---
+
+**Creado:** 2025-12-25
+**Estado:** ✅ COMPLETO
